@@ -49,7 +49,7 @@ jobs:
 
       - name: Upload test artifacts
         if: always() && (hashFiles('coverage.xml') != '' || hashFiles('reports/junit.xml') != '')
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: test-and-coverage
           path: |
@@ -90,7 +90,7 @@ jobs:
 
       - name: Upload SAST artifacts
         if: always() && hashFiles('reports/**') != ''
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: sast-reports
           path: reports/
@@ -130,7 +130,7 @@ jobs:
 
       - name: Upload dependency scan artifacts
         if: always() && hashFiles('reports/**') != ''
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: dependency-scan
           path: reports/
@@ -160,7 +160,7 @@ jobs:
 
       - name: Upload secret scan artifacts
         if: always() && hashFiles('reports/**') != ''
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: secret-scan
           path: reports/
@@ -203,7 +203,7 @@ jobs:
 
       - name: Upload container scan artifacts
         if: always() && hashFiles('reports/**') != ''
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: container-scan
           path: reports/
