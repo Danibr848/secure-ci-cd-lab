@@ -1,0 +1,36 @@
+rules:
+  - id: python-subprocess-shell-true
+    languages: [python]
+    severity: ERROR
+    message: Avoid shell=True in subprocess calls because it increases command injection risk.
+    patterns:
+      - pattern-either:
+          - pattern: subprocess.run(..., shell=True, ...)
+          - pattern: subprocess.Popen(..., shell=True, ...)
+          - pattern: subprocess.call(..., shell=True, ...)
+    metadata:
+      category: security
+      technology: [python]
+
+  - id: python-yaml-unsafe-load
+    languages: [python]
+    severity: ERROR
+    message: Use yaml.safe_load instead of yaml.load on untrusted data.
+    pattern-either:
+      - pattern: yaml.load(...)
+      - pattern: yaml.full_load(...)
+    metadata:
+      category: security
+      technology: [python]
+
+  - id: python-verify-false-http-client
+    languages: [python]
+    severity: ERROR
+    message: Disabling TLS verification should be treated as a blocking issue.
+    patterns:
+      - pattern-either:
+          - pattern: requests.$FUNC(..., verify=False, ...)
+          - pattern: httpx.$FUNC(..., verify=False, ...)
+    metadata:
+      category: security
+      technology: [python]
