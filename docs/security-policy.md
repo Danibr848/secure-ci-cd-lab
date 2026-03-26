@@ -28,7 +28,7 @@ Use this file together with:
 | Coverage | `pytest-cov` | Coverage below `85%` blocks | None below threshold |
 | SAST | `bandit` | High-severity findings with medium/high confidence block (`-lll -ii`) | Medium/low findings are reviewed but do not block by default |
 | SAST | `semgrep` | Any hit from the curated local rules blocks | Only explicitly curated rules are enabled |
-| Dependency scan | `pip-audit` | Any known vulnerable package blocks | None; vulnerable dependencies are treated as actionable |
+| Dependency scan | `pip-audit` | Any known vulnerable runtime package from `requirements.txt` blocks | None; vulnerable runtime dependencies are treated as actionable |
 | Secret scan | `gitleaks` | Any detected secret blocks | None; secrets are never tolerated |
 | Container scan | `trivy` | `HIGH` or `CRITICAL` vulnerabilities with fixes available block | Low/medium findings are informational; unfixed findings are ignored to reduce noise |
 
@@ -70,8 +70,9 @@ The policy is intentionally simple:
 
 ### pip-audit
 
-- Checks the installed dependency set for known vulnerabilities.
-- The policy is strict because this repo is meant to show release readiness, not just reporting.
+- Checks the runtime dependency set declared in `requirements.txt`.
+- This keeps the blocking gate focused on shipped application dependencies instead of security tooling dependencies used only in CI.
+- The policy is still strict because this repo is meant to show release readiness, not just reporting.
 
 ### Gitleaks
 

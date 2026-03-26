@@ -24,7 +24,7 @@ This repository exists to answer a simple question: can a small engineering proj
 | Problem solved | Many CI demo repos stop at build plus unit tests and never define a credible release policy |
 | App purpose | FastAPI service that scores release risk for a hypothetical product or service change |
 | Tools used | FastAPI, pytest, pytest-cov, Ruff, Bandit, Semgrep, pip-audit, Gitleaks, Trivy, Docker, GitHub Actions, Dependabot |
-| Security controls | SAST, dependency scanning, secret scanning, container image scanning, documented severity policy |
+| Security controls | SAST, runtime dependency scanning, secret scanning, container image scanning, documented severity policy |
 | Blocking gates | Failing tests, coverage below 85%, lint errors, vulnerable dependencies, committed secrets, blocking SAST hits, HIGH or CRITICAL image findings |
 | Target roles | QA Automation, DevSecOps, Product Security, Platform Engineering, Secure SDLC, SDET |
 
@@ -81,7 +81,7 @@ flowchart LR
 | Coverage | Pytest-Cov | Below 85% | None below threshold |
 | SAST | Bandit | High severity with medium/high confidence | Medium and low findings are review items |
 | SAST | Semgrep | Any hit from the curated local rules | Only curated high-signal rules are enabled |
-| Dependency scan | pip-audit | Any known vulnerable package | None |
+| Dependency scan | pip-audit | Any known vulnerable runtime package from `requirements.txt` | None |
 | Secret scan | Gitleaks | Any detected secret | None |
 | Container scan | Trivy | HIGH or CRITICAL with a fix available | Low/medium findings and unfixed issues are tolerated |
 

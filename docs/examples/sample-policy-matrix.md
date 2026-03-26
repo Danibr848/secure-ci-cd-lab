@@ -20,7 +20,7 @@ This is a portfolio-friendly snapshot of the policy defined in `docs/security-po
 | Coverage | Below 85% | None below threshold |
 | Bandit | High severity with medium/high confidence | Medium and low findings are review items |
 | Semgrep | Any hit from the curated local rules | Only curated high-signal rules are enabled |
-| pip-audit | Any vulnerable package | None |
+| pip-audit | Any vulnerable runtime package from `requirements.txt` | None |
 | Gitleaks | Any committed secret | None |
 | Trivy | HIGH or CRITICAL with a fix available | Low/medium findings and unfixed items are tolerated |
 
