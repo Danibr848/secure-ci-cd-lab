@@ -83,6 +83,7 @@ The policy is intentionally simple:
 ### Trivy
 
 - Scans the built image so the gate reflects the shipped artifact, not only the source tree.
+- In CI, Trivy runs from the official container image instead of the GitHub Action wrapper to avoid setup fragility and keep behavior close to the local Docker-based workflow.
 - Blocks only on `HIGH` and `CRITICAL` vulnerabilities with fixes available.
 - Medium and low findings remain useful for backlog hygiene and trend tracking, but they are not release blockers here.
 

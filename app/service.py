@@ -1,7 +1,5 @@
 """Business logic for the risk assessment API."""
 
-from __future__ import annotations
-
 from app.schemas import (
     AuthenticationMethod,
     BusinessCriticality,
@@ -59,7 +57,9 @@ def calculate_risk_assessment(
     score += AUTH_WEIGHTS[payload.authentication]
     if payload.authentication in {AuthenticationMethod.NONE, AuthenticationMethod.PASSWORD}:
         risk_drivers.append("Authentication strength is below a strong federated baseline")
-        actions.append("Require stronger authentication such as SSO with MFA for privileged access.")
+        actions.append(
+            "Require stronger authentication such as SSO with MFA for privileged access."
+        )
 
     score += DATA_CLASSIFICATION_WEIGHTS[payload.data_classification]
     if payload.data_classification in {
