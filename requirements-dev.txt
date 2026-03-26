@@ -3,6 +3,6 @@ bandit>=1.8,<2.0
 httpx>=0.28,<1.0
 pip-audit>=2.8,<3.0
 pytest>=8.3,<9.0
-pytest-cov>=6.0,<7.0
+pytest-cov>=6.0,<8.0
 ruff>=0.8,<1.0
 semgrep>=1.100,<2.0
